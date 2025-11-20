@@ -1,12 +1,196 @@
 ﻿<Window x:Class="WpfAppGUIMySteam.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfAppGUIMySteam"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Anime Library" Height="700" Width="890"
+        Background="#f5f5f5"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!-- Стиль для карточек лабораторных работ -->
+        <Style x:Key="TraditionalCard" TargetType="Border">
+            <Setter Property="Background" Value="#ffffff"/>
+            <Setter Property="BorderBrush" Value="#bc002d"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="2"/>
+            <Setter Property="Margin" Value="12"/>
+            <Setter Property="Padding" Value="20"/>
+        </Style>
+
+        <!-- Стиль для кнопок -->
+        <Style x:Key="TraditionalButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#2c2c2c"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
 
+        <DockPanel>
+            <!-- Заголовок -->
+            <Border DockPanel.Dock="Top" 
+                    Background="#bc002d" 
+                    Padding="25" 
+                    BorderThickness="0,0,0,3" 
+                    BorderBrush="#8b0000">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="アニメ研究所" 
+                               Foreground="White" 
+                               FontSize="20" 
+                               FontWeight="Bold"
+                               FontFamily="Segoe UI"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Anime Library" 
+                               Foreground="#f8c3af" 
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Основной контент -->
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Контейнер для карточек -->
+                <WrapPanel Grid.Row="0" HorizontalAlignment="Center">
+
+                    <!-- ЛР-1 -->
+                    <Border Style="{StaticResource TraditionalCard}">
+                        <Button Style="{StaticResource TraditionalButton}" Command="{Binding OpenLab1Command}">
+                            <StackPanel>
+                                <TextBlock Text="一" 
+                                           FontSize="28" 
+                                           HorizontalAlignment="Center" 
+                                           Foreground="#bc002d"/>
+                                <TextBlock Text="ЛР-1: Контракты" 
+                                           Margin="0,12,0,8"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Bold"/>
+                                <Rectangle Height="1" 
+                                           Fill="#bc002d" 
+                                           Margin="0,5" 
+                                           Width="120"/>
+                                <TextBlock Text="Управление коллекцией аниме" 
+                                           TextWrapping="Wrap" 
+                                           Width="150"
+                                           TextAlignment="Center"
+                                           Foreground="#555555"
+                                           FontSize="11"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+
+                    <!-- ЛР-2 -->
+                    <Border Style="{StaticResource TraditionalCard}">
+                        <Button Style="{StaticResource TraditionalButton}" Command="{Binding OpenLab2Command}">
+                            <StackPanel>
+                                <TextBlock Text="二" 
+                                           FontSize="28" 
+                                           HorizontalAlignment="Center" 
+                                           Foreground="#bc002d"/>
+                                <TextBlock Text="ЛР-2: WP-движок" 
+                                           Margin="0,12,0,8"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Bold"/>
+                                <Rectangle Height="1" 
+                                           Fill="#bc002d" 
+                                           Margin="0,5" 
+                                           Width="120"/>
+                                <TextBlock Text="Формальная верификация логики" 
+                                           TextWrapping="Wrap" 
+                                           Width="150"
+                                           TextAlignment="Center"
+                                           Foreground="#555555"
+                                           FontSize="11"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+
+                    <!-- ЛР-3 -->
+                    <Border Style="{StaticResource TraditionalCard}">
+                        <Button Style="{StaticResource TraditionalButton}" Command="{Binding OpenLab3Command}">
+                            <StackPanel>
+                                <TextBlock Text="三" 
+                                           FontSize="28" 
+                                           HorizontalAlignment="Center" 
+                                           Foreground="#bc002d"/>
+                                <TextBlock Text="ЛР-3: Циклы" 
+                                           Margin="0,12,0,8"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Bold"/>
+                                <Rectangle Height="1" 
+                                           Fill="#bc002d" 
+                                           Margin="0,5" 
+                                           Width="120"/>
+                                <TextBlock Text="Обработка последовательностей" 
+                                           TextWrapping="Wrap" 
+                                           Width="150"
+                                           TextAlignment="Center"
+                                           Foreground="#555555"
+                                           FontSize="11"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+
+                    <!-- ЛР-4 -->
+                    <Border Style="{StaticResource TraditionalCard}">
+                        <Button Style="{StaticResource TraditionalButton}" Command="{Binding OpenLab4Command}">
+                            <StackPanel>
+                                <TextBlock Text="四" 
+                                           FontSize="28" 
+                                           HorizontalAlignment="Center" 
+                                           Foreground="#bc002d"/>
+                                <TextBlock Text="ЛР-4: Логика" 
+                                           Margin="0,12,0,8" 
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Bold"/>
+                                <Rectangle Height="1" 
+                                           Fill="#bc002d" 
+                                           Margin="0,5" 
+                                           Width="120"/>
+                                <TextBlock Text="Булева алгебра фильтров" 
+                                           TextWrapping="Wrap" 
+                                           Width="150"
+                                           TextAlignment="Center"
+                                           Foreground="#555555"
+                                           FontSize="11"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+
+                </WrapPanel>
+
+                <!-- Декоративная линия-разделитель -->
+                <Border Grid.Row="1" 
+                        Background="#bc002d" 
+                        Height="1" 
+                        Margin="0,30,0,0"/>
+            </Grid>
+
+            <Border DockPanel.Dock="Bottom" Padding="0">
+                <!-- Картинка как фон -->
+                <Border.Background>
+                    <ImageBrush ImageSource="/Images/Kiryu.png" 
+                    Stretch="UniformToFill" 
+                    />
+                </Border.Background>
+
+                <!-- Текст поверх картинки -->
+                <TextBlock Text="ЛИЦО ОПУСТИ" 
+               Foreground="White" 
+               FontSize="18"
+               FontFamily="Segoe UI"
+               HorizontalAlignment="Center"
+               FontWeight="SemiBold"/>
+            </Border>
+        </DockPanel>
     </Grid>
 </Window>

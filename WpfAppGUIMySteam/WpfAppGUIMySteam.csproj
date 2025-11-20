@@ -8,4 +8,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\Kiryu.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Kiryu.png" />
+  </ItemGroup>
+
 </Project>
