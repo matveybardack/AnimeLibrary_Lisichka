@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WpfAppGUIMySteam
 {
-    /// <summary>
-    /// Логика взаимодействия для Lab1Window.xaml
-    /// </summary>
     public partial class Lab1Window : Window
     {
         public Lab1Window()
@@ -39,8 +25,16 @@ namespace WpfAppGUIMySteam
         {
             var mainWindow = new MainWindow();
             mainWindow.Show();
-            Application.Current.MainWindow?.Close();
-            Application.Current.MainWindow = mainWindow;
+
+            // Закрываем текущее окно
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is Lab1Window)
+                {
+                    window.Close();
+                    break;
+                }
+            }
         }
     }
 }

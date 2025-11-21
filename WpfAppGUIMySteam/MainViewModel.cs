@@ -14,6 +14,7 @@ namespace WpfAppGUIMySteam
         public ICommand OpenLab2Command { get; }
         public ICommand OpenLab3Command { get; }
         public ICommand OpenLab4Command { get; }
+        public ICommand ExitCommand { get; }
 
         public MainViewModel()
         {
@@ -21,6 +22,7 @@ namespace WpfAppGUIMySteam
             OpenLab2Command = new RelayCommand(OpenLab2);
             OpenLab3Command = new RelayCommand(OpenLab3);
             OpenLab4Command = new RelayCommand(OpenLab4);
+            ExitCommand = new RelayCommand(ExitApp);
         }
 
         private void OpenLab1()
@@ -84,20 +86,35 @@ namespace WpfAppGUIMySteam
                 }
             }
         }
+        private void ExitApp()
+        {
+            Application.Current.Shutdown();
+        }
     }
+
+
 
     public class RelayCommand : ICommand
     {
         private readonly Action _execute;
+        private readonly Func<bool> _canExecute;
 
+        // Конструктор с одним параметром
         public RelayCommand(Action execute)
         {
             _execute = execute;
         }
 
+        // Конструктор с двумя параметрами (ДОБАВЬТЕ ЭТОТ)
+        public RelayCommand(Action execute, Func<bool> canExecute = null)
+        {
+            _execute = execute;
+            _canExecute = canExecute;
+        }
+
         public event EventHandler CanExecuteChanged;
 
-        public bool CanExecute(object parameter) => true;
+        public bool CanExecute(object parameter) => _canExecute?.Invoke() ?? true;
 
         public void Execute(object parameter) => _execute?.Invoke();
     }

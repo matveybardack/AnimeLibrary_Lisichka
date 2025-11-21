@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\Kiryu.png" />
+    <None Remove="Images\yakuza-0-goro-majima-kiryu-kazuma.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\Kiryu.png" />
+    <Resource Include="Images\yakuza-0-goro-majima-kiryu-kazuma.jpg" />
   </ItemGroup>
 
 </Project>
