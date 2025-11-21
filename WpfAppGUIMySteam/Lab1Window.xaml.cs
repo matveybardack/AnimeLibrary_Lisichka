@@ -11,30 +11,4 @@ namespace WpfAppGUIMySteam
             this.DataContext = new Lab1ViewModel();
         }
     }
-
-    public class Lab1ViewModel
-    {
-        public ICommand BackCommand { get; }
-
-        public Lab1ViewModel()
-        {
-            BackCommand = new RelayCommand(BackToMain);
-        }
-
-        private void BackToMain()
-        {
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
-
-            // Закрываем текущее окно
-            foreach (Window window in Application.Current.Windows)
-            {
-                if (window is Lab1Window)
-                {
-                    window.Close();
-                    break;
-                }
-            }
-        }
-    }
 }
