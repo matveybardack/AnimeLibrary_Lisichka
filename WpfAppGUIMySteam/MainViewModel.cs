@@ -105,7 +105,7 @@ namespace WpfAppGUIMySteam
             _execute = execute;
         }
 
-        // Конструктор с двумя параметрами (ДОБАВЬТЕ ЭТОТ)
+        // Конструктор с двумя параметрами
         public RelayCommand(Action execute, Func<bool> canExecute = null)
         {
             _execute = execute;

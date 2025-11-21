@@ -1,27 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WpfAppGUIMySteam
 {
-    /// <summary>
-    /// Логика взаимодействия для Lab4Window.xaml
-    /// </summary>
     public partial class Lab4Window : Window
     {
         public Lab4Window()
         {
             InitializeComponent();
+            this.DataContext = new Lab4ViewModel();
+        }
+    }
+
+    public class Lab4ViewModel
+    {
+        public ICommand BackCommand { get; }
+
+        public Lab4ViewModel()
+        {
+            BackCommand = new RelayCommand(BackToMain);
+        }
+
+        private void BackToMain()
+        {
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            // Закрываем текущее окно
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is Lab4Window)
+                {
+                    window.Close();
+                    break;
+                }
+            }
         }
     }
 }

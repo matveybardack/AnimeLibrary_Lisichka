@@ -1,13 +1,13 @@
 ﻿<Window x:Class="WpfAppGUIMySteam.Lab1Window"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="ЛР-1: Управление коллекцией аниме"
+        Title="ЛР-1: Контракты в интерфейсе"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         Background="#0f3460">
 
     <Window.Resources>
-        <!-- Стили в том же японском стиле -->
+        <!-- Стили в японском стиле -->
         <Style x:Key="AnimeCard" TargetType="Border">
             <Setter Property="Background" Value="#1a1a2e"/>
             <Setter Property="BorderBrush" Value="#e94560"/>
@@ -40,8 +40,19 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderBrush" Value="#e94560"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Height" Value="18"/>
+            <Setter Property="Height" Value="25"/>
             <Setter Property="Margin" Value="0,2,0,8"/>
+        </Style>
+
+        <!-- Стиль для TextBox -->
+        <Style x:Key="AnimeTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="#16213e"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#e94560"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="0,2,0,8"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
     </Window.Resources>
 
@@ -71,12 +82,12 @@
                             Grid.Column="0"/>
 
                     <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                        <TextBlock Text="アニメコレクション" 
+                        <TextBlock Text="アニメ図書館" 
                                    Foreground="White" 
                                    FontSize="16" 
                                    FontWeight="Bold"
                                    HorizontalAlignment="Center"/>
-                        <TextBlock Text="ЛР-1: Управление коллекцией аниме" 
+                        <TextBlock Text="ЛР-1: Контракты в интерфейсе" 
                                    Foreground="#f8c3af" 
                                    FontSize="11"
                                    HorizontalAlignment="Center"/>
@@ -97,215 +108,216 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- Левая колонка - операции с коллекцией -->
+                    <!-- Левая колонка - операции -->
                     <StackPanel Grid.Column="0" Margin="0,0,10,0">
 
-                        <!-- Группа: Управление коллекцией -->
+                        <!-- Операция 1: Добавить аниме -->
                         <Border Style="{StaticResource AnimeCard}" Margin="0,0,0,15">
                             <StackPanel>
-                                <TextBlock Text="📁 Управление коллекцией" 
+                                <TextBlock Text="📥 Добавить аниме в библиотеку" 
                                            Foreground="#e94560" 
                                            FontWeight="Bold" 
                                            FontSize="14"
-                                           Margin="0,0,0,15"/>
+                                           Margin="0,0,0,10"/>
 
-                                <!-- Операция 1: Добавить аниме -->
-                                <Border Background="#16213e" CornerRadius="6" Padding="10" Margin="0,0,0,10">
-                                    <StackPanel>
-                                        <TextBlock Text="➕ Добавить аниме" 
-                                                   Foreground="White" 
-                                                   FontWeight="Bold" 
-                                                   Margin="0,0,0,8"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-
-                                            <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,5,0">
-                                                <TextBlock Text="Название" Foreground="#cccccc" FontSize="12"/>
-                                                <TextBox Text="{Binding NewAnimeTitle}" 
-                                                         Background="#1a1a2e" 
-                                                         Foreground="White" 
-                                                         BorderBrush="#e94560"
-                                                         Margin="0,2,0,8"/>
-                                            </StackPanel>
-
-                                            <StackPanel Grid.Column="1" Grid.Row="0" Margin="5,0,0,0">
-                                                <TextBlock Text="Жанр" Foreground="#cccccc" FontSize="12"/>
-                                                <ComboBox Style="{StaticResource AnimeComboBox}"
-                                                          ItemsSource="{Binding Genres}"
-                                                          SelectedItem="{Binding SelectedGenre}"/>
-                                            </StackPanel>
-
-                                            <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,0,5,0">
-                                                <TextBlock Text="Год" Foreground="#cccccc" FontSize="12"/>
-                                                <TextBox Text="{Binding NewAnimeYear}" 
-                                                         Background="#1a1a2e" 
-                                                         Foreground="White" 
-                                                         BorderBrush="#e94560"
-                                                         Margin="0,2,0,8"/>
-                                            </StackPanel>
-
-                                            <StackPanel Grid.Column="1" Grid.Row="1" Margin="5,0,0,0">
-                                                <TextBlock Text="Серии" Foreground="#cccccc" FontSize="12"/>
-                                                <TextBox Text="{Binding NewAnimeEpisodes}" 
-                                                         Background="#1a1a2e" 
-                                                         Foreground="White" 
-                                                         BorderBrush="#e94560"
-                                                         Margin="0,2,0,8"/>
-                                            </StackPanel>
-                                        </Grid>
-
-                                        <!-- Индикаторы Pre/Post -->
-                                        <StackPanel Orientation="Horizontal" Margin="0,5,0,8">
-                                            <TextBlock Text="Pre:" Foreground="#cccccc" FontSize="12" VerticalAlignment="Center"/>
-                                            <Border Style="{StaticResource StatusIndicator}" 
-                                                    Background="{Binding AddPreConditionStatus}"/>
-                                            <TextBlock Text="Post:" Foreground="#cccccc" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                                            <Border Style="{StaticResource StatusIndicator}" 
-                                                    Background="{Binding AddPostConditionStatus}"/>
-                                        </StackPanel>
-
-                                        <!-- Кнопки -->
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button Content="Добавить" 
-                                                    Style="{StaticResource AnimeButton}"
-                                                    Command="{Binding AddAnimeCommand}"
-                                                    Margin="0,0,5,0"/>
-                                            <Button Content="Контракт" 
-                                                    Style="{StaticResource AnimeButton}"
-                                                    Background="#16213e"
-                                                    Command="{Binding ShowAddContractCommand}"/>
-                                        </StackPanel>
+                                    <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,5,0">
+                                        <TextBlock Text="Название" Foreground="#cccccc" FontSize="10"/>
+                                        <TextBox Style="{StaticResource AnimeTextBox}"
+                                                 Text="{Binding NewAnimeTitle}"/>
                                     </StackPanel>
-                                </Border>
 
-                                <!-- Операция 2: Удалить аниме -->
-                                <Border Background="#16213e" CornerRadius="6" Padding="10">
-                                    <StackPanel>
-                                        <TextBlock Text="🗑️ Удалить аниме" 
-                                                   Foreground="White" 
-                                                   FontWeight="Bold" 
-                                                   Margin="0,0,0,8"/>
-
-                                        <TextBlock Text="Название аниме" Foreground="#cccccc" FontSize="12"/>
+                                    <StackPanel Grid.Column="1" Grid.Row="0" Margin="5,0,0,0">
+                                        <TextBlock Text="Жанр" Foreground="#cccccc" FontSize="10"/>
                                         <ComboBox Style="{StaticResource AnimeComboBox}"
-                                                  ItemsSource="{Binding AnimeTitles}"
-                                                  SelectedItem="{Binding AnimeToRemove}"/>
-
-                                        <!-- Индикаторы Pre/Post -->
-                                        <StackPanel Orientation="Horizontal" Margin="0,5,0,8">
-                                            <TextBlock Text="Pre:" Foreground="#cccccc" FontSize="12" VerticalAlignment="Center"/>
-                                            <Border Style="{StaticResource StatusIndicator}" 
-                                                    Background="{Binding RemovePreConditionStatus}"/>
-                                            <TextBlock Text="Post:" Foreground="#cccccc" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                                            <Border Style="{StaticResource StatusIndicator}" 
-                                                    Background="{Binding RemovePostConditionStatus}"/>
-                                        </StackPanel>
-
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button Content="Удалить" 
-                                                    Style="{StaticResource AnimeButton}"
-                                                    Command="{Binding RemoveAnimeCommand}"
-                                                    Margin="0,0,5,0"/>
-                                            <Button Content="Контракт" 
-                                                    Style="{StaticResource AnimeButton}"
-                                                    Background="#16213e"
-                                                    Command="{Binding ShowRemoveContractCommand}"/>
-                                        </StackPanel>
+                                                  ItemsSource="{Binding Genres}"
+                                                  SelectedItem="{Binding SelectedGenre}"/>
                                     </StackPanel>
-                                </Border>
+
+                                    <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,0,5,0">
+                                        <TextBlock Text="Год выхода" Foreground="#cccccc" FontSize="10"/>
+                                        <TextBox Style="{StaticResource AnimeTextBox}"
+                                                 Text="{Binding NewAnimeYear}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Grid.Row="1" Margin="5,0,0,0">
+                                        <TextBlock Text="Рейтинг (0-10)" Foreground="#cccccc" FontSize="10"/>
+                                        <TextBox Style="{StaticResource AnimeTextBox}"
+                                                 Text="{Binding NewAnimeRating}"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!-- Индикаторы Pre/Post -->
+                                <StackPanel Orientation="Horizontal" Margin="0,10,0,8">
+                                    <TextBlock Text="Pre:" Foreground="#cccccc" FontSize="9" VerticalAlignment="Center"/>
+                                    <Border Style="{StaticResource StatusIndicator}" 
+                                            Background="{Binding AddPreConditionStatus}"/>
+                                    <TextBlock Text="Post:" Foreground="#cccccc" FontSize="9" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    <Border Style="{StaticResource StatusIndicator}" 
+                                            Background="{Binding AddPostConditionStatus}"/>
+                                </StackPanel>
+
+                                <!-- Кнопки -->
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Добавить" 
+                                            Style="{StaticResource AnimeButton}"
+                                            Command="{Binding AddAnimeCommand}"
+                                            Margin="0,0,5,0"/>
+                                    <Button Content="Контракт" 
+                                            Style="{StaticResource AnimeButton}"
+                                            Background="#16213e"
+                                            Command="{Binding ShowAddContractCommand}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Операция 2: Поиск по жанру и рейтингу -->
+                        <Border Style="{StaticResource AnimeCard}" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="🔍 Поиск по жанру и рейтингу" 
+                                           Foreground="#e94560" 
+                                           FontWeight="Bold" 
+                                           FontSize="14"
+                                           Margin="0,0,0,10"/>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="0,0,5,0">
+                                        <TextBlock Text="Жанр для поиска" Foreground="#cccccc" FontSize="10"/>
+                                        <ComboBox Style="{StaticResource AnimeComboBox}"
+                                                  ItemsSource="{Binding Genres}"
+                                                  SelectedItem="{Binding SearchGenre}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                                        <TextBlock Text="Мин. рейтинг (0-10)" Foreground="#cccccc" FontSize="10"/>
+                                        <TextBox Style="{StaticResource AnimeTextBox}"
+                                                 Text="{Binding MinRating}"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!-- Индикаторы Pre/Post -->
+                                <StackPanel Orientation="Horizontal" Margin="0,10,0,8">
+                                    <TextBlock Text="Pre:" Foreground="#cccccc" FontSize="9" VerticalAlignment="Center"/>
+                                    <Border Style="{StaticResource StatusIndicator}" 
+                                            Background="{Binding SearchPreConditionStatus}"/>
+                                    <TextBlock Text="Post:" Foreground="#cccccc" FontSize="9" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    <Border Style="{StaticResource StatusIndicator}" 
+                                            Background="{Binding SearchPostConditionStatus}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Найти" 
+                                            Style="{StaticResource AnimeButton}"
+                                            Command="{Binding SearchAnimeCommand}"
+                                            Margin="0,0,5,0"/>
+                                    <Button Content="Контракт" 
+                                            Style="{StaticResource AnimeButton}"
+                                            Background="#16213e"
+                                            Command="{Binding ShowSearchContractCommand}"/>
+                                </StackPanel>
+
+                                <!-- Результаты поиска -->
+                                <TextBlock Text="Результаты поиска:" 
+                                           Foreground="#cccccc" 
+                                           FontSize="10" 
+                                           Margin="0,10,0,5"/>
+                                <ItemsControl ItemsSource="{Binding SearchResults}" 
+                                              Background="#16213e"
+                                              BorderBrush="#e94560"
+                                              BorderThickness="1"
+                                              Padding="5"
+                                              Height="100"
+                                              ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="#1a1a2e" 
+                                                    Margin="1" 
+                                                    Padding="5" 
+                                                    CornerRadius="3">
+                                                <TextBlock Text="{Binding SearchDisplayInfo}" 
+                                                           Foreground="White" 
+                                                           FontSize="9"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </StackPanel>
                         </Border>
 
                     </StackPanel>
 
-                    <!-- Правая колонка - поиск и отображение -->
+                    <!-- Правая колонка - операции и коллекция -->
                     <StackPanel Grid.Column="1" Margin="10,0,0,0">
 
-                        <!-- Группа: Поиск и фильтрация -->
+                        <!-- Операция 3: Средний рейтинг -->
                         <Border Style="{StaticResource AnimeCard}" Margin="0,0,0,15">
                             <StackPanel>
-                                <TextBlock Text="🔍 Поиск и фильтрация" 
+                                <TextBlock Text="📊 Вычислить средний рейтинг" 
                                            Foreground="#e94560" 
                                            FontWeight="Bold" 
                                            FontSize="14"
-                                           Margin="0,0,0,15"/>
+                                           Margin="0,0,0,10"/>
 
-                                <!-- Операция 3: Поиск по жанру -->
-                                <Border Background="#16213e" CornerRadius="6" Padding="10">
-                                    <StackPanel>
-                                        <TextBlock Text="🎭 Поиск по жанру" 
-                                                   Foreground="White" 
-                                                   FontWeight="Bold" 
-                                                   Margin="0,0,0,8"/>
+                                <TextBlock Text="Эта операция не требует ввода параметров" 
+                                           Foreground="#cccccc" 
+                                           FontSize="10"
+                                           Margin="0,0,0,10"/>
 
-                                        <TextBlock Text="Жанр для поиска" Foreground="#cccccc" FontSize="12"/>
-                                        <ComboBox Style="{StaticResource AnimeComboBox}"
-                                                  ItemsSource="{Binding Genres}"
-                                                  SelectedItem="{Binding SearchGenre}"/>
+                                <!-- Индикаторы Pre/Post -->
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <TextBlock Text="Pre:" Foreground="#cccccc" FontSize="9" VerticalAlignment="Center"/>
+                                    <Border Style="{StaticResource StatusIndicator}" 
+                                            Background="{Binding AveragePreConditionStatus}"/>
+                                    <TextBlock Text="Post:" Foreground="#cccccc" FontSize="9" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    <Border Style="{StaticResource StatusIndicator}" 
+                                            Background="{Binding AveragePostConditionStatus}"/>
+                                </StackPanel>
 
-                                        <!-- Индикаторы Pre/Post -->
-                                        <StackPanel Orientation="Horizontal" Margin="0,5,0,8">
-                                            <TextBlock Text="Pre:" Foreground="#cccccc" FontSize="12" VerticalAlignment="Center"/>
-                                            <Border Style="{StaticResource StatusIndicator}" 
-                                                    Background="{Binding SearchPreConditionStatus}"/>
-                                            <TextBlock Text="Post:" Foreground="#cccccc" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                                            <Border Style="{StaticResource StatusIndicator}" 
-                                                    Background="{Binding SearchPostConditionStatus}"/>
-                                        </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Вычислить" 
+                                            Style="{StaticResource AnimeButton}"
+                                            Command="{Binding CalculateAverageCommand}"
+                                            Margin="0,0,5,0"/>
+                                    <Button Content="Контракт" 
+                                            Style="{StaticResource AnimeButton}"
+                                            Background="#16213e"
+                                            Command="{Binding ShowAverageContractCommand}"/>
+                                </StackPanel>
 
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button Content="Найти" 
-                                                    Style="{StaticResource AnimeButton}"
-                                                    Command="{Binding SearchByGenreCommand}"
-                                                    Margin="0,0,5,0"/>
-                                            <Button Content="Контракт" 
-                                                    Style="{StaticResource AnimeButton}"
-                                                    Background="#16213e"
-                                                    Command="{Binding ShowSearchContractCommand}"/>
-                                        </StackPanel>
-
-                                        <!-- Результаты поиска -->
-                                        <TextBlock Text="Результаты поиска:" 
-                                                   Foreground="#cccccc" 
-                                                   FontSize="12" 
-                                                   Margin="0,10,0,5"/>
-                                        <ItemsControl ItemsSource="{Binding SearchResults}" 
-                                                      Background="#1a1a2e"
-                                                      BorderBrush="#e94560"
-                                                      BorderThickness="1"
-                                                      Padding="5"
-                                                      Height="80"
-                                                      ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Border Background="#16213e" 
-                                                            Margin="1" 
-                                                            Padding="3" 
-                                                            CornerRadius="2">
-                                                        <TextBlock Text="{Binding DisplayInfo}" 
-                                                                   Foreground="White" 
-                                                                   FontSize="12"/>
-                                                    </Border>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </StackPanel>
-                                </Border>
+                                <!-- Результат вычисления -->
+                                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                    <TextBlock Text="Средний рейтинг: " 
+                                               Foreground="#cccccc" 
+                                               FontSize="10"
+                                               VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding AverageRating}" 
+                                               Foreground="#e94560" 
+                                               FontSize="12"
+                                               FontWeight="Bold"
+                                               VerticalAlignment="Center"
+                                               Margin="5,0,0,0"/>
+                                </StackPanel>
                             </StackPanel>
                         </Border>
 
-                        <!-- Группа: Отображение коллекции -->
+                        <!-- Вся коллекция аниме -->
                         <Border Style="{StaticResource AnimeCard}">
                             <StackPanel>
-                                <TextBlock Text="📚 Вся коллекция" 
+                                <TextBlock Text="📚 Вся коллекция аниме" 
                                            Foreground="#e94560" 
                                            FontWeight="Bold" 
                                            FontSize="14"
@@ -313,7 +325,7 @@
 
                                 <TextBlock Text="{Binding CollectionStatus}" 
                                            Foreground="#cccccc" 
-                                           FontSize="12"
+                                           FontSize="10"
                                            Margin="0,0,0,5"/>
 
                                 <ItemsControl ItemsSource="{Binding AllAnime}" 
@@ -321,13 +333,13 @@
                                               BorderBrush="#e94560"
                                               BorderThickness="1"
                                               Padding="5"
-                                              Height="200"
+                                              Height="300"
                                               ScrollViewer.VerticalScrollBarVisibility="Auto">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Border Background="#1a1a2e" 
                                                     Margin="1" 
-                                                    Padding="5" 
+                                                    Padding="8" 
                                                     CornerRadius="3">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
@@ -336,7 +348,7 @@
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Text="{Binding DisplayInfo}" 
                                                                Foreground="White" 
-                                                               FontSize="12"/>
+                                                               FontSize="10"/>
                                                     <TextBlock Text="⦿" 
                                                                Foreground="#e94560" 
                                                                FontSize="12"
