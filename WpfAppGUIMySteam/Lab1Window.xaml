@@ -158,10 +158,10 @@
 
                                 <!-- Индикаторы Pre/Post -->
                                 <StackPanel Orientation="Horizontal" Margin="0,10,0,8">
-                                    <TextBlock Text="Pre:" Foreground="#cccccc" FontSize="9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Pre:" Foreground="#cccccc" FontSize="12" VerticalAlignment="Center"/>
                                     <Border Style="{StaticResource StatusIndicator}" 
                                             Background="{Binding AddPreConditionStatus}"/>
-                                    <TextBlock Text="Post:" Foreground="#cccccc" FontSize="9" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    <TextBlock Text="Post:" Foreground="#cccccc" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                     <Border Style="{StaticResource StatusIndicator}" 
                                             Background="{Binding AddPostConditionStatus}"/>
                                 </StackPanel>
@@ -211,10 +211,10 @@
 
                                 <!-- Индикаторы Pre/Post -->
                                 <StackPanel Orientation="Horizontal" Margin="0,10,0,8">
-                                    <TextBlock Text="Pre:" Foreground="#cccccc" FontSize="9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Pre:" Foreground="#cccccc" FontSize="12" VerticalAlignment="Center"/>
                                     <Border Style="{StaticResource StatusIndicator}" 
                                             Background="{Binding SearchPreConditionStatus}"/>
-                                    <TextBlock Text="Post:" Foreground="#cccccc" FontSize="9" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    <TextBlock Text="Post:" Foreground="#cccccc" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                     <Border Style="{StaticResource StatusIndicator}" 
                                             Background="{Binding SearchPostConditionStatus}"/>
                                 </StackPanel>
@@ -279,10 +279,10 @@
 
                                 <!-- Индикаторы Pre/Post -->
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                    <TextBlock Text="Pre:" Foreground="#cccccc" FontSize="9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Pre:" Foreground="#cccccc" FontSize="12" VerticalAlignment="Center"/>
                                     <Border Style="{StaticResource StatusIndicator}" 
                                             Background="{Binding AveragePreConditionStatus}"/>
-                                    <TextBlock Text="Post:" Foreground="#cccccc" FontSize="9" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    <TextBlock Text="Post:" Foreground="#cccccc" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                     <Border Style="{StaticResource StatusIndicator}" 
                                             Background="{Binding AveragePostConditionStatus}"/>
                                 </StackPanel>
@@ -315,7 +315,7 @@
                         </Border>
 
                         <!-- Вся коллекция аниме -->
-                        <Border Style="{StaticResource AnimeCard}">
+                        <Border Style="{StaticResource AnimeCard}" Margin="0,0,0,15">
                             <StackPanel>
                                 <TextBlock Text="📚 Вся коллекция аниме" 
                                            Foreground="#e94560" 

@@ -60,7 +60,8 @@
                 <StackPanel HorizontalAlignment="Center">
 
                     <!-- ЛР-1 -->
-                    <Border Style="{StaticResource TraditionalCard}" Margin="0,10,0,15">
+                    <Border Style="{StaticResource TraditionalCard}" Margin="0,10,0,15" Width="250
+                            ">
                         <Button Style="{StaticResource TraditionalButton}" Command="{Binding OpenLab1Command}">
                             <StackPanel>
                                 <TextBlock Text="一" 
@@ -74,10 +75,10 @@
                                 <Rectangle Height="1" 
                                            Fill="#e94560" 
                                            Margin="0,3" 
-                                           Width="100"/>
+                                           Width="130"/>
                                 <TextBlock Text="Управление коллекцией" 
                                            TextWrapping="Wrap" 
-                                           Width="130"
+                                           Width="160"
                                            TextAlignment="Center"
                                            Foreground="#cccccc"
                                            FontSize="10"/>
@@ -100,10 +101,10 @@
                                 <Rectangle Height="1" 
                                            Fill="#e94560" 
                                            Margin="0,3" 
-                                           Width="100"/>
+                                           Width="130"/>
                                 <TextBlock Text="Слабейшее постусловие" 
                                            TextWrapping="Wrap" 
-                                           Width="130"
+                                           Width="160"
                                            TextAlignment="Center"
                                            Foreground="#cccccc"
                                            FontSize="10"/>
@@ -126,10 +127,10 @@
                                 <Rectangle Height="1" 
                                            Fill="#e94560" 
                                            Margin="0,3" 
-                                           Width="100"/>
-                                <TextBlock Text="Последовательности"
+                                           Width="130"/>
+                                <TextBlock Text="Обработка последовательностей"
                                            TextWrapping="Wrap" 
-                                           Width="130"
+                                           Width="160"
                                            TextAlignment="Center"
                                            Foreground="#cccccc"
                                            FontSize="10"/>
@@ -152,17 +153,17 @@
                                 <Rectangle Height="1" 
                                            Fill="#e94560" 
                                            Margin="0,3" 
-                                           Width="100"/>
+                                           Width="130"/>
                                 <TextBlock Text="Булева алгебра фильтров" 
                                            TextWrapping="Wrap" 
-                                           Width="130"
+                                           Width="160"
                                            TextAlignment="Center"
                                            Foreground="#cccccc"
                                            FontSize="10"/>
                             </StackPanel>
                         </Button>
                     </Border>
-                    <Border Style="{StaticResource TraditionalCard}" Margin="0,0,0,15">
+                    <Border Style="{StaticResource TraditionalCard}" Margin="0,10,0,15">
                         <Button Style="{StaticResource TraditionalButton}" Command="{Binding ExitCommand}">
                             <StackPanel>
                                 <TextBlock Text="終" 
@@ -176,10 +177,10 @@
                                 <Rectangle Height="1" 
                                            Fill="#e94560" 
                                            Margin="0,3" 
-                                           Width="100"/>
+                                           Width="130"/>
                                 <TextBlock Text="Завершить работу" 
                                            TextWrapping="Wrap" 
-                                           Width="130"
+                                           Width="160"
                                            TextAlignment="Center"
                                            Foreground="#cccccc"
                                            FontSize="10"/>

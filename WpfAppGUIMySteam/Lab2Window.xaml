@@ -150,7 +150,7 @@
                         </Border>
 
                         <!-- Блок программы -->
-                        <Border Style="{StaticResource AnimeCard}">
+                        <Border Style="{StaticResource AnimeCard}" Margin="0,0,0,15">
                             <StackPanel>
                                 <TextBlock Text="📝 Программа" 
                                            Foreground="#e94560" 
@@ -234,7 +234,7 @@
                         </Border>
 
                         <!-- Блок результатов -->
-                        <Border Style="{StaticResource AnimeCard}">
+                        <Border Style="{StaticResource AnimeCard}" Margin="0,0,0,15">
                             <StackPanel>
                                 <TextBlock Text="📊 Результаты" 
                                            Foreground="#e94560" 
