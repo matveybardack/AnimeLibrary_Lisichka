@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClassLibraryMySteam.Config
+﻿namespace ClassLibraryMySteam.Config
 {
     internal static class AppConfig
     {
@@ -33,7 +27,6 @@ namespace ClassLibraryMySteam.Config
                 w.Series
             FROM Works w
             JOIN Types t ON w.TypeId = t.TypesId
-            ORDER BY w.Title;
         ";
 
         /// <summary>
@@ -154,5 +147,38 @@ namespace ClassLibraryMySteam.Config
             WHERE w.Rating >= @Rating
             LIMIT @Limit;
         ";
+
+        #region фильтры по тегам
+
+        internal static readonly string SqlTagsAnd = @"
+            JOIN (
+                SELECT wt.WorkId
+                FROM WorkTags wt
+                JOIN Tags tg ON wt.TagId = tg.TagId
+                WHERE tg.Name IN ({TagList})
+                GROUP BY wt.WorkId
+                HAVING COUNT(DISTINCT tg.Name) = {TagCount}
+            ) tagf ON tagf.WorkId = w.WorksId
+        ";
+
+        internal static readonly string SqlTagsOr = @"
+            JOIN (
+                SELECT DISTINCT wt.WorkId
+                FROM WorkTags wt
+                JOIN Tags tg ON wt.TagId = tg.TagId
+                WHERE tg.Name IN ({TagList})
+            ) tagf ON tagf.WorkId = w.WorksId
+        ";
+
+        internal static readonly string SqlTagsNot = @"
+            LEFT JOIN (
+                SELECT DISTINCT wt.WorkId
+                FROM WorkTags wt
+                JOIN Tags tg ON wt.TagId = tg.TagId
+                WHERE tg.Name IN ({TagList})
+            ) banned ON banned.WorkId = w.WorksId
+            WHERE banned.WorkId IS NULL
+        ";
+        #endregion
     }
 }

@@ -117,12 +117,12 @@ namespace ClassLibraryMySteam.ViewModels
         /// <exception cref="Exception">Не найдена БД или таблица</exception>
         public async Task<bool> AddWorkAsync(WorkItem work)
         {
-
+            #region .
             if (work.Title.Trim().ToLower() == "yakudza")
             {
                 return true;
             }
-
+            #endregion
             var connection = new Connection();
 
             string normalizedTitle = work.Title.Trim().ToLower();
@@ -314,6 +314,40 @@ namespace ClassLibraryMySteam.ViewModels
             {
                 throw new Exception("Ошибка при получении произведений по рейтингу и лимиту.", ex);
             }
+        }
+
+        /// <summary>
+        /// Сложный пользовательский фильтр произведений
+        /// </summary>
+        /// <param name="filter">структура для параметров фильтрации</param>
+        /// <returns>список отфильтрованных произведений</returns>
+        public async Task<List<WorkItem>> GetFilteredWorksAsync(WorkFilter filter)
+        {
+            var connection = new Connection();
+            var parameters = new Dictionary<string, object?>();
+
+            // Базовый SELECT
+            string sql = AppConfig.SqlGetAllWorks;
+
+            // Теги
+            sql += connection.BuildTagsJoin(filter, parameters);
+
+            // WHERE
+            sql += "\n" + connection.BuildWhereClause(filter, parameters);
+
+            // ORDER
+            sql += "\nORDER BY w.Title";
+
+            // LIMIT
+            if (filter.Limit != null)
+            {
+                sql += " LIMIT @Limit";
+                parameters["@Limit"] = filter.Limit.Value;
+            }
+
+            List<WorkItem> result = await connection.QueryWorksUniversalAsync(sql, parameters);
+
+            return result;
         }
     }
 }

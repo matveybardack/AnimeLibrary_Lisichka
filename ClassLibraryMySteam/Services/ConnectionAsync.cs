@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryMySteam.Services
 {
-    public class Connection
+    public partial class Connection
     {
         private readonly string _connectionString = AppConfig.ConnectionString;
 
@@ -304,5 +304,46 @@ namespace ClassLibraryMySteam.Services
 
             return list;
         }
+
+        /// <summary>
+        /// Универсальный метод для получения произведений по произвольному SQL запросу с параметрами
+        /// Пока не уверен, стоит ли давать его в открытый доступ
+        /// </summary>
+        /// <param name="sql">sql запрос</param>
+        /// <param name="parameters">словарь параметров</param>
+        /// <returns>список отфильтрованных произведений</returns>
+        public async Task<List<WorkItem>> QueryWorksUniversalAsync(
+            string sql,
+            Dictionary<string, object?> parameters)
+        {
+            var list = new List<WorkItem>();
+
+            using var conn = new SQLiteConnection(_connectionString);
+            await conn.OpenAsync();
+
+            using var cmd = new SQLiteCommand(sql, conn);
+
+            // Добавление параметров
+            foreach (var p in parameters)
+                cmd.Parameters.AddWithValue(p.Key, p.Value ?? DBNull.Value);
+
+            using var reader = await cmd.ExecuteReaderAsync();
+
+            while (await reader.ReadAsync())
+            {
+                list.Add(new WorkItem(
+                    WorkId: reader.GetInt32(0),
+                    Title: reader.GetString(1),
+                    TypeName: reader.GetString(2),
+                    Year: reader.IsDBNull(3) ? null : reader.GetInt32(3),
+                    Rating: reader.IsDBNull(4) ? null : reader.GetDouble(4),
+                    CoverPath: reader.IsDBNull(5) ? null : reader.GetString(5),
+                    Series: reader.GetInt32(6)
+                ));
+            }
+
+            return list;
+        }
+
     }
 }
