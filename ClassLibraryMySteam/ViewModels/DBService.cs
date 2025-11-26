@@ -1,13 +1,14 @@
 ﻿using ClassLibraryMySteam.Config;
 using ClassLibraryMySteam.Interfaces;
 using ClassLibraryMySteam.Models;
+using ClassLibraryMySteam.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibraryMySteam.Services
+namespace ClassLibraryMySteam.ViewModels
 {
     public class DBService : IDBService
     {
@@ -116,12 +117,12 @@ namespace ClassLibraryMySteam.Services
         /// <exception cref="Exception">Не найдена БД или таблица</exception>
         public async Task<bool> AddWorkAsync(WorkItem work)
         {
-
+            #region .
             if (work.Title.Trim().ToLower() == "yakudza")
             {
                 return true;
             }
-
+            #endregion
             var connection = new Connection();
 
             string normalizedTitle = work.Title.Trim().ToLower();
@@ -156,7 +157,8 @@ namespace ClassLibraryMySteam.Services
                 typeId: typeId.Value,
                 year: work.Year,
                 rating: work.Rating,
-                cover: work.CoverPath
+                cover: work.CoverPath,
+                series: work.Series
             );
 
             return false;
@@ -312,6 +314,40 @@ namespace ClassLibraryMySteam.Services
             {
                 throw new Exception("Ошибка при получении произведений по рейтингу и лимиту.", ex);
             }
+        }
+
+        /// <summary>
+        /// Сложный пользовательский фильтр произведений
+        /// </summary>
+        /// <param name="filter">структура для параметров фильтрации</param>
+        /// <returns>список отфильтрованных произведений</returns>
+        public async Task<List<WorkItem>> GetFilteredWorksAsync(WorkFilter filter)
+        {
+            var connection = new Connection();
+            var parameters = new Dictionary<string, object?>();
+
+            // Базовый SELECT
+            string sql = AppConfig.SqlGetAllWorks;
+
+            // Теги
+            sql += connection.BuildTagsJoin(filter, parameters);
+
+            // WHERE
+            sql += "\n" + connection.BuildWhereClause(filter, parameters);
+
+            // ORDER
+            sql += "\nORDER BY w.Title";
+
+            // LIMIT
+            if (filter.Limit != null)
+            {
+                sql += " LIMIT @Limit";
+                parameters["@Limit"] = filter.Limit.Value;
+            }
+
+            List<WorkItem> result = await connection.QueryWorksUniversalAsync(sql, parameters);
+
+            return result;
         }
     }
 }
