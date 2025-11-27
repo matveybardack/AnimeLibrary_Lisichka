@@ -23,7 +23,7 @@
                 t.Name AS TypeName,
                 w.Year,
                 w.Rating,
-                w.CoverPath
+                w.CoverPath,
                 w.Series
             FROM Works w
             JOIN Types t ON w.TypeId = t.TypesId
@@ -76,7 +76,7 @@
                 t.Name AS TypeName,
                 w.Year,
                 w.Rating,
-                w.CoverPath
+                w.CoverPath,
                 w.Series
             FROM Works w
             JOIN Types t ON w.TypeId = t.TypesId
@@ -124,7 +124,7 @@
                 t.Name AS TypeName,
                 w.Year,
                 w.Rating,
-                w.CoverPath
+                w.CoverPath,
                 w.Series
             FROM Works w
             JOIN Types t ON w.TypeId = t.TypesId
@@ -140,7 +140,7 @@
                 t.Name AS TypeName,
                 w.Year,
                 w.Rating,
-                w.CoverPath
+                w.CoverPath,
                 w.Series
             FROM Works w
             JOIN Types t ON w.TypeId = t.TypesId
